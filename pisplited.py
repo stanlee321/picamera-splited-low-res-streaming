@@ -172,8 +172,11 @@ if __name__ == '__main__':
 	camera_.start()
 	while True:
 		lrFrame = out_pipe.recv()
-		cv2.imshow('lores', lrFrame)
-		ch = 0xFF & cv2.waitKey(5)
-		if ch == ord('q'):
-			camera_.stop()
-			break
+		_date = datetime.datetime.now().strftime('%Y%m%d_%H%M%S_%f')[:-4]
+		write_names_as = "{}.jpg".format(_date)
+		cv2.imwrite('{}_{}'.format(write_names_as, 'low' ), lrFrame)
+		#cv2.imshow('lores', lrFrame)
+		#ch = 0xFF & cv2.waitKey(5)
+		#if ch == ord('q'):
+		#	camera_.stop()
+		#	break
